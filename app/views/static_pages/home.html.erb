@@ -1,0 +1,38 @@
+<% def ButterbeanCode(num) 
+  num * 2
+end %>
+<% def BinaryRepresentation(num)
+  outArray = []
+  remainder = num
+  i = 2**((Math.log(num,2)).floor)
+  begin
+    if remainder >= i
+      remainder = remainder % i
+      outArray.push(1)
+    else
+      outArray.push(0)
+    end
+    i /= 2
+  end until i < 1
+  outArray
+end %>
+<% def MontgomeryLadder(base, exponent)
+  x1 = base
+  x2 = base**2
+  binary = BinaryRepresentation(exponent)
+  for i in 1...binary.length
+    if binary[i] == 0
+      x2 = x1 * x2
+      x1 = x1 * x1
+    else
+      x1 = x1 * x2
+      x2 = x2 * x2
+    end
+  end
+  x1
+end %>
+<h1>StaticPages#home</h1>
+<% (1..10).each do |num| %>
+  <p><%= MontgomeryLadder(3, num)%></p>
+<% end %>
+<p>Find me in app/views/static_pages/home.html.erb</p>
