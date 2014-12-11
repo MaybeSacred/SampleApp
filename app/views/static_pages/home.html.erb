@@ -31,7 +31,8 @@ end %>
   end
   x1
 end %>
-<h1>StaticPages#home</h1>
+<% provide(:title, "Home")%>
+<h1>Home page for sample app</h1>
 <% (1..10).each do |num| %>
   <p><%= MontgomeryLadder(3, num)%></p>
 <% end %>
